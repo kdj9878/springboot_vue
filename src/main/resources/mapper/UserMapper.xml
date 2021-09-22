@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" -->
+
+<mapper namespace="com.xxx.boot.mapperInterface.CostomUserDetail">
+    
+    <!-- 유저 정보와 함께 권한 정보를 가져오는 sql문 -->
+    <select id="getUserDetailWithAuthentication" parameterType="String" resultType="com.xxx.boot.security.CostomUserDetail">
+        select M.member_id, M.member_name, M.member_password, M.member_email, M.nickname, M.activated, A.authority_name
+        from member M, user_authority A
+        where M.member_id = A.member_id and M.member_name = #{member_name}
+    </select>
+
+
+
+
+</mapper>
