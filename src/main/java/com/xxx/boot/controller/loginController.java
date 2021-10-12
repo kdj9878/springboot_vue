@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "login")
+@RequestMapping(value = "api/user")
 public class loginController {
     
 
 
-    @GetMapping(value = "/do")
+    @GetMapping(value = "/login")
     public void login(){
         System.out.println("로그인 컨트롤러");
     }

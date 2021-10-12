@@ -1,19 +1,18 @@
 package com.xxx.boot.controller;
 
 
-import com.xxx.boot.dto.MemberDTO;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "token")
+@RequestMapping(value = "api/token")
 public class TokenController {
     
 
-    // @PostMapping(value = "/getToken")
-    // public void getToken(MemberDTO mDto){
+    @GetMapping(value = "/getToken")
+    public void getToken(){
 
         
-    // }
+    }
 }
