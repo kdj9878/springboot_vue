@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 
+@Configuration
 public class JwtFilter extends GenericFilterBean{
     
     private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);

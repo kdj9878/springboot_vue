@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const URL = 'http://localhost:8888/'
+
 export function login(params){
     return axios({
-        url: '/Login/do',
+        url: URL + 'api/user/login',
         method : 'post',
         data : params
     });

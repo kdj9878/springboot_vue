@@ -12,6 +12,6 @@ public class webConfig implements WebMvcConfigurer {
         registry
         .addMapping("/**")
         .allowedOrigins("http://localhost:8080")
-        .allowedMethods("get", "post");
+        .allowedMethods("GET", "POST");
     }
 }

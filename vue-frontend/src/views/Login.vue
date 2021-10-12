@@ -1,10 +1,10 @@
 <template>
     <section id="login-section">
             <div id="id-div">
-                <input id="usernameInput" type="text" placeholder="아이디" v-model="userInfo.username">
+                <input id="usernameInput" type="text" placeholder="아이디" v-model="username">
             </div>
             <div id="pw-div">
-                <input id="passwordInput" type="password" placeholder="비밀번호" v-model="userInfo.password">
+                <input id="passwordInput" type="password" placeholder="비밀번호" v-model="password">
             </div>
             <div id="login-button">
                 <button @click="doLogin">로그인</button>
@@ -13,27 +13,27 @@
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity';
-import userStore from 'vuex'
+import { mapActions } from 'vuex'
+
+    const userStore = 'userStore';
 
 export default {
-    setup(){
-        const userInfo = reactive({
-            username : '',
-            password : ''
-        })
-
-        const store = userStore();
-        const doLogin = () =>{
-            store.dispatch('login', userInfo);
-
-        };
+    data(){
         return {
-            userInfo,
-            doLogin
+                username : '',
+                password : ''
         }
-
-    }
+    },
+    methods : {
+        ...mapActions(userStore, ['login']),
+        doLogin(){
+            const userInfo = {
+                username : this.username,
+                password : this.password,
+            }
+            this.login(userInfo)
+        }
+    },
 
 }
 

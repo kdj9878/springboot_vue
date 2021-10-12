@@ -12,8 +12,8 @@ public class UserDAO {
     @Autowired
     private UserMapper usermapper;
 
-    public CostomUserDetail getUserById(String member_name) {
-        return usermapper.getUserById(member_name);
+    public CostomUserDetail getUserById(String username) {
+        return usermapper.getUserById(username);
     }
 
 

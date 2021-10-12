@@ -4,6 +4,7 @@ package com.xxx.boot.config;
 
 import com.xxx.boot.jwt.TokenProvider;
 import com.xxx.boot.jwt.JwtAuthenticationEntryPont;
+import com.xxx.boot.jwt.JwtFilter;
 import com.xxx.boot.jwt.JwtAccessDeniedHandler;
 import com.xxx.boot.jwt.JwtSecurityConfig;
 
@@ -17,21 +18,25 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)  //PreAuthorize 어노테이션을 메소드단위로 사용하기 위해서 사용
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+    private final JwtFilter jwtFilter;
     private final TokenProvider tokenProvider;
     private final JwtAuthenticationEntryPont authenticationEntryPont;
     private final JwtAccessDeniedHandler accessDeniedHandler;
 
     public SecurityConfig(
         TokenProvider tokenProvider,
+        JwtFilter jwtFilter,
         JwtAuthenticationEntryPont authenticationEntryPont,
         JwtAccessDeniedHandler accessDeniedHandler){
         
         this.tokenProvider = tokenProvider;
+        this.jwtFilter = jwtFilter;
         this.authenticationEntryPont = authenticationEntryPont;
         this.accessDeniedHandler = accessDeniedHandler;
     }
@@ -56,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
         http.csrf().disable()   //csrf : 자신의 의지와는 무관하게 특정 웹사이트에(수정, 삭제, 등록 등) 요청하는 행위
                                 //토큰 방식이기 때문에 설정을 안함
-
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()    //exceptin을 핸들링 할 때 각각의 상황이 발생하면 해당 메소드를 실행
             .authenticationEntryPoint(authenticationEntryPont)
             .accessDeniedHandler(accessDeniedHandler)

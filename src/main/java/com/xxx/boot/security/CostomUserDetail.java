@@ -8,19 +8,17 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class CostomUserDetail implements UserDetails {
-    private int member_id;
+    private int userId;
     private String username;
     private String password;
-    private String member_email;
-    private String nickName;
     private int activated;
 
-    private String authority_name;
+    private String authority;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         ArrayList<GrantedAuthority> authList = new ArrayList<>();
-        authList.add(new SimpleGrantedAuthority(authority_name));
+        authList.add(new SimpleGrantedAuthority(authority));
         return authList;
     }
 
@@ -54,28 +52,13 @@ public class CostomUserDetail implements UserDetails {
     }
 
     public int getMember_id() {
-        return member_id;
+        return userId;
     }
 
-    public void setMember_id(int member_id) {
-        this.member_id = member_id;
+    public void setMember_id(int userId) {
+        this.userId = userId;
     }
 
-    public String getMember_email() {
-        return member_email;
-    }
-
-    public void setMember_email(String member_email) {
-        this.member_email = member_email;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
 
 
 }
