@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface ListMapper {
 
 
-    List<ListDTO> AllList();
+    public List<ListDTO> AllList();
 
     
 
